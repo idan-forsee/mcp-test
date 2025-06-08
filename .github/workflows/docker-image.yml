@@ -12,9 +12,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      TIMESTAMP_TAG: ${{ github.run_id }}  # or use `date +%s` in a run step and export if needed
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag mamok/tests:$(date +%s)
-    - name: Push Docker image
-      run: docker push mamok/tests:$(date +%s)
+      - uses: actions/checkout@v4
+      
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag mamok/tests:${TIMESTAMP_TAG}
+
+      - name: Push Docker image
+        run: docker push mamok/tests:${TIMESTAMP_TAG}
