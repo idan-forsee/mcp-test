@@ -5,7 +5,7 @@ FROM openjdk:17-alpine
 ARG JAR_FILE=claude-testers-1.0-SNAPSHOT.jar
 
 # Add the JAR file specified by the build argument to the container
-ADD target/${JAR_FILE} /usr/share/forsee/claude-testers-1.0-SNAPSHOT.jar
+ADD ${JAR_FILE} /usr/share/forsee/claude-testers-1.0-SNAPSHOT.jar
 
 # Expose the port the application runs on
 EXPOSE 8080
